@@ -1,9 +1,9 @@
-import { DataUsersType } from "../../../interfaces/userTypes";
+import { UserType } from "../../../interfaces/userTypes";
 
 interface UserDetailsProps {
   setIsOpenDetails: React.Dispatch<React.SetStateAction<boolean>>;
   isOpenDetails: boolean;
-  userDetails: DataUsersType;
+  userDetails: UserType;
 }
 
 const UserDetails = ({

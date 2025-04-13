@@ -7,6 +7,8 @@ export interface UserType {
   role: "User" | "Admin";
 }
 
+
+
 export interface UsersResponse {
   data: UserType[];
   totalCount: number;
