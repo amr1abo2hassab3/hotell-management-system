@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import Pagination from "../../Pagination/Pagination";
+// import Pagination from "../../Pagination/Pagination";
 import axios from "axios";
 import { baseUrl, searchByEmail, users } from "../../../Api/Api";
 import { useEffect, useState } from "react";

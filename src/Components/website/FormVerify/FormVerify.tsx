@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { baseUrl } from "../../../Api/Api";
 import { verifyResetCode } from "./../../../Api/Api";
@@ -41,8 +41,12 @@ const FormVerify = () => {
       setTimeout(() => {
         navigate("/new-password");
       }, 1000);
-    } catch (error) {
-      setErrorMessage(error?.response?.data);
+    } catch (err: unknown) {
+      if (err instanceof AxiosError && err.response) {
+        setErrorMessage(err.response.data);
+      } else {
+        setErrorMessage("حدث خطأ غير متوقع.");
+      }
     } finally {
       setIsLoading(false);
     }

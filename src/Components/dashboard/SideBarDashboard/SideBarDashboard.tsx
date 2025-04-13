@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import logo from "../../../assets/images/logo.jpg";
 

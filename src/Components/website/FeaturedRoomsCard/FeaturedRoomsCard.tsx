@@ -1,17 +1,16 @@
-import img from "../../../assets/images/register.jpg";
 import imgBathhub from "../../../assets/images/bathhub.png";
 import imgWifi from "../../../assets/images/wifi.png";
 import imgBed from "../../../assets/images/bed.png";
 import imgTv from "../../../assets/images/tv.png";
-import { FeaturedData } from "../../../interfaces/fteaturedType";
 import { Link } from "react-router-dom";
+import { Room, Service } from "../../../interfaces/roomTypes";
 
 interface Amenity {
   img: string;
   label: string;
 }
 interface FeaturedRoomsCardProps {
-  item: FeaturedData;
+  item: Room;
 }
 
 const amenities: Amenity[] = [
@@ -46,7 +45,7 @@ const FeaturedRoomsCard = ({ item }: FeaturedRoomsCardProps) => {
           ))}
         </div>
         <p className="text-[14px] text-[#7C8493] leading-[1.5]">
-          {item.services.map((serv) => (
+          {item.services.map((serv: Service) => (
             <span key={serv.serviceName}>{serv.serviceName}</span>
           ))}
         </p>

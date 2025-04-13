@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import { useState } from "react";
 import { ForgotValues } from "../../../interfaces/formAuthType";
 import * as Yup from "yup";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { baseUrl, forgotPassword } from "../../../Api/Api";
 import { motion } from "framer-motion";
 import { FaCheck } from "react-icons/fa";
@@ -36,8 +36,12 @@ const ForgetForm = () => {
       setTimeout(() => {
         navigate("/verify");
       }, 1000);
-    } catch (err) {
-      setErrorMessage(err.response.data);
+    } catch (err: unknown) {
+      if (err instanceof AxiosError && err.response) {
+        setErrorMessage(err.response.data);
+      } else {
+        setErrorMessage("حدث خطأ غير متوقع.");
+      }
     } finally {
       setIsLoading(false);
     }

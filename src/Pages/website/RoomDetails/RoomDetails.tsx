@@ -1,5 +1,4 @@
 import { Link, useParams } from "react-router-dom";
-import img1 from "../../../assets/images/detailsimg.jpg";
 import SliderDetails from "../../../Components/website/SliderDetails/SliderDetails";
 import { useQuery } from "@tanstack/react-query";
 import { Room } from "../../../interfaces/roomTypes";

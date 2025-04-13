@@ -1,11 +1,11 @@
 import axios from "axios";
 import useGetAllServices from "../../../customHooks/useGetAllServices";
 import { ServiceType } from "../../../interfaces/srvicesTypes";
-import { baseUrl, roomFilter, roomTypes } from "../../../Api/Api";
-import { RoomsResponse, RoomType } from "../../../interfaces/roomTypes";
+import { baseUrl, roomTypes } from "../../../Api/Api";
+import { RoomType } from "../../../interfaces/roomTypes";
 import { useQuery } from "@tanstack/react-query";
 import LoaderScreen from "../LoaderScreen/LoaderScreen";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface OpenSectionsType {
   budget: boolean;

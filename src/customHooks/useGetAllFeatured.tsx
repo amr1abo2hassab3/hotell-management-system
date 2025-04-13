@@ -10,7 +10,7 @@ const useGetAllFeatured = () => {
 
   const query = useQuery<RoomsResponse>({
     queryKey: ["getAllFeatuerd"],
-    queryFn: () => handleGetAllFeatured(userData?.token),
+    queryFn: () => handleGetAllFeatured(userData?.token || ""),
     enabled: !!userData?.token,
   });
   return query;

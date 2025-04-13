@@ -1,3 +1,4 @@
+import { ErrorType } from "../../../interfaces/errorType";
 import { Room, RoomsResponse } from "../../../interfaces/roomTypes";
 import Pagination from "../../Pagination/Pagination";
 import CardRoom from "../CardRoom/CardRoom";
