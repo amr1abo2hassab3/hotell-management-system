@@ -13,6 +13,9 @@ const RegisterForm = () => {
   const [serverErrors, setServerErrors] = useState<ServerErrors[]>(
     [] as ServerErrors[]
   );
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [showConfirmPassword, setShowConfirmPassword] =
+    useState<boolean>(false);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const navigate = useNavigate();
@@ -135,17 +138,26 @@ const RegisterForm = () => {
               )}
             </div>
             <div>
-              <input
-                disabled={isLoading}
-                autoComplete="new-password"
-                type="password"
-                name="password"
-                className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#C49C74] focus:border-[#C49C74] outline-none transition-all"
-                placeholder="Password"
-                value={formik.values.password}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-              />
+              <div className="relative">
+                {" "}
+                <input
+                  disabled={isLoading}
+                  autoComplete="new-password"
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#C49C74] focus:border-[#C49C74] outline-none transition-all"
+                  placeholder="Password"
+                  value={formik.values.password}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                />
+                <i
+                  onClick={() => setShowPassword(!showPassword)}
+                  className={`fa-regular ${
+                    showPassword ? "fa-eye" : "fa-eye-slash"
+                  } absolute -translate-y-1/2 top-1/2 right-2 p-1 cursor-pointer text-[#ABADB7]`}
+                ></i>
+              </div>
               {formik.touched.password && formik.errors.password && (
                 <p className="text-red-500 text-sm py-2 font-semibold">
                   {formik.errors.password}
@@ -153,17 +165,26 @@ const RegisterForm = () => {
               )}
             </div>
             <div>
-              <input
-                disabled={isLoading}
-                autoComplete="new-password"
-                type="password"
-                name="confirmPassword"
-                className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#C49C74] focus:border-[#C49C74] outline-none transition-all"
-                placeholder="Confirm Password"
-                value={formik.values.confirmPassword}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-              />
+              <div className="relative">
+                {" "}
+                <input
+                  disabled={isLoading}
+                  autoComplete="new-password"
+                  type={showConfirmPassword ? "text" : "password"}
+                  name="confirmPassword"
+                  className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#C49C74] focus:border-[#C49C74] outline-none transition-all"
+                  placeholder="Confirm Password"
+                  value={formik.values.confirmPassword}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                />
+                <i
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  className={`fa-regular ${
+                    showConfirmPassword ? "fa-eye" : "fa-eye-slash"
+                  } absolute -translate-y-1/2 top-1/2  right-2 p-1 cursor-pointer text-[#ABADB7]`}
+                ></i>
+              </div>
               {formik.touched.confirmPassword &&
                 formik.errors.confirmPassword && (
                   <p className="text-red-500 text-sm py-2 font-semibold">

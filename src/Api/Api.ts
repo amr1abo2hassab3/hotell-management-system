@@ -19,4 +19,5 @@ export const services:string = "/api/Service";
 
 // <<<<<< Dashboard >>>>>>>
 export const users: string = "/api/Users";
+export const addUser: string = "/api/Users/add";
 export const searchByEmail:string = "/api/Users/search-by-email"

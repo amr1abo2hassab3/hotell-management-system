@@ -8,7 +8,7 @@ interface UserDetailsProps {
 
 const UserDetails = ({
   setIsOpenDetails,
-  isOpenDetails,    
+  isOpenDetails,
   userDetails,
 }: UserDetailsProps) => {
   const handleClose = (): void => {
@@ -38,14 +38,14 @@ const UserDetails = ({
         <form>
           <div className="mb-4">
             <label
-              htmlFor="fullName"
+              htmlFor="full-Name"
               className="block text-sm font-medium text-[#202430]"
             >
               Full Name
             </label>
             <input
               type="text"
-              id="fullName"
+              id="full-Name"
               name="fullName"
               readOnly
               value={userDetails.fullName || ""}
@@ -57,14 +57,14 @@ const UserDetails = ({
 
           <div className="mb-4">
             <label
-              htmlFor="phoneNumber"
+              htmlFor="phone-Number"
               className="block text-sm font-medium text-[#202430]"
             >
               Phone Number
             </label>
             <input
               type="text"
-              id="phoneNumber"
+              id="phone-Number"
               name="phoneNumber"
               readOnly
               value={userDetails.phoneNumber || ""}
@@ -76,14 +76,14 @@ const UserDetails = ({
 
           <div className="mb-4">
             <label
-              htmlFor="email"
+              htmlFor="email-user"
               className="block text-sm font-medium text-[#202430]"
             >
               Email
             </label>
             <input
               type="email"
-              id="email"
+              id="email-user"
               name="email"
               readOnly
               value={userDetails.email || ""}
@@ -95,13 +95,13 @@ const UserDetails = ({
 
           <div className="mb-4">
             <label
-              htmlFor="role"
+              htmlFor="role-user"
               className="block text-sm font-medium text-[#202430]"
             >
               Role
             </label>
             <select
-              id="role"
+              id="role-user"
               name="role"
               disabled
               value={userDetails.role || ""}

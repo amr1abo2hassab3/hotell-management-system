@@ -5,7 +5,7 @@ import UsersTable from "../../../Components/dashboard/UsersTable/UsersTable";
 const UserDashboard = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
-    <div className="p-[32px] flex flex-col gap-4">
+    <div className="md:p-[32px] flex flex-col gap-4">
       <div className="flex flex-col gap-[16px]">
         <div className="flex flex-col gap-[10px]">
           <h1 className="text-[#202430] text-[24px] font-bold capitalize">

@@ -1,15 +1,16 @@
 import { useFormik } from "formik";
-import { DataUsersType } from "../../../interfaces/userTypes";
 import * as Yup from "yup";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { baseUrl, users } from "../../../Api/Api";
 import { toast } from "react-toastify";
+import { UserType } from "../../../interfaces/userTypes";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface UserEditProps {
   isOpenEdit: boolean;
   setIsOpenEdit: React.Dispatch<React.SetStateAction<boolean>>;
-  userDetails: DataUsersType;
+  userDetails: UserType;
 }
 
 interface EditValues {
@@ -17,6 +18,7 @@ interface EditValues {
   phoneNumber: string;
   email: string;
   role: string;
+  newPassword: string;
 }
 
 const EditUser = ({
@@ -27,12 +29,17 @@ const EditUser = ({
   const handleClose = (): void => {
     setIsOpenEdit(false);
   };
+  const queryClient = useQueryClient();
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+
   const [initialValues, setInitialValues] = useState<EditValues>({
     fullName: "",
     phoneNumber: "",
     email: "",
     role: "User",
+    newPassword: "",
   });
   const handleEditUserDetails = async (values: EditValues) => {
     setIsLoading(true);
@@ -52,6 +59,7 @@ const EditUser = ({
           theme: "light",
           icon: false,
         });
+        await queryClient.invalidateQueries({ queryKey: ["GetAllUsers"] });
         handleClose();
       }
     } catch (error) {
@@ -70,6 +78,12 @@ const EditUser = ({
       phoneNumber: Yup.string()
         .matches(/^(010|011|012|015)\d{8}$/, "Invalid phone number")
         .required("Phone number is required"),
+      newPassword: Yup.string()
+        .min(6, "Password must be at least 6 characters")
+        .matches(/[a-z]/, "Password must have at least one lowercase letter")
+        .matches(/[A-Z]/, "Password must have at least one uppercase letter")
+        .matches(/[\W_]/, "Password must have at least one special character")
+        .required("Password is required"),
     }),
     onSubmit: handleEditUserDetails,
   });
@@ -81,6 +95,7 @@ const EditUser = ({
         phoneNumber: userDetails.phoneNumber || "",
         email: userDetails.email || "",
         role: userDetails.role || "User",
+        newPassword: "",
       });
     }
   }, [userDetails]);
@@ -90,8 +105,8 @@ const EditUser = ({
       className={`fixed top-0 left-0 right-0 bottom-0 backdrop-blur-sm z-50 flex items-center justify-center transition-all duration-300
     ${
       isOpenEdit
-        ? "opacity-100 scale-100 animate-fade-in"
-        : "opacity-0 scale-90 pointer-events-none"
+        ? "opacity-100 scale-100 animate-fade-in "
+        : "opacity-0 scale-90 pointer-events-none "
     }`}
     >
       <div className=" mx-auto md:min-w-[626px] md:min-h-[556px] w-[350px] bg-white p-8 rounded-lg shadow-lg bg-opacity-60 backdrop-blur-lg">
@@ -178,6 +193,39 @@ const EditUser = ({
             {formik.touched.email && formik.errors.email && (
               <p className="text-red-500 text-sm py-2 font-semibold ">
                 {formik.errors.email}
+              </p>
+            )}
+          </div>
+          <div className="mb-4  ">
+            <label
+              htmlFor="newPassword"
+              className="block text-sm font-medium text-[#202430]"
+            >
+              New Password
+            </label>
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="newPassword"
+                name="newPassword"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.newPassword}
+                className="w-full mt-2  p-3 border border-[#ddd] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#986D3C]"
+                placeholder="Enter New Password"
+                required
+              />
+
+              <i
+                onClick={() => setShowPassword(!showPassword)}
+                className={`fa-regular ${
+                  showPassword ? "fa-eye" : "fa-eye-slash"
+                } absolute -translate-y-1/2 top-1/2 right-2 p-1 cursor-pointer text-[#ABADB7]`}
+              ></i>
+            </div>
+            {formik.touched.newPassword && formik.errors.newPassword && (
+              <p className="text-red-500 text-sm py-2 font-semibold ">
+                {formik.errors.newPassword}
               </p>
             )}
           </div>
