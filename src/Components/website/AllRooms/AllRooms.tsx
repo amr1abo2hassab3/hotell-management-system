@@ -1,4 +1,3 @@
-import { ErrorType } from "../../../interfaces/errorType";
 import { Room, RoomsResponse } from "../../../interfaces/roomTypes";
 import Pagination from "../../Pagination/Pagination";
 import CardRoom from "../CardRoom/CardRoom";
@@ -8,7 +7,6 @@ interface AllRoomsProps {
   setPageNumber: React.Dispatch<React.SetStateAction<number>>;
   pageNumber: number;
   isError: boolean;
-  error: ErrorType;
 }
 
 const AllRooms = ({
@@ -16,7 +14,6 @@ const AllRooms = ({
   dataRooms,
   pageNumber,
   isError,
-  error,
 }: AllRoomsProps) => {
   if (isError) {
     // إذا حدث خطأ، اعرض رسالة الخطأ
@@ -24,7 +21,7 @@ const AllRooms = ({
       <div className="container mx-auto py-5">
         <h2 className="text-[32px] text-white font-bold ">All rooms</h2>
         <div className="text-red-500 text-center text-[40px]">
-          <p className="font-semibold"> {error.response.data}</p>
+          <p className="font-semibold"> No rooms found ‼ </p>
         </div>
       </div>
     );

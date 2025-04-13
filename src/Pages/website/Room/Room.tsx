@@ -94,7 +94,7 @@ const Room: React.FC = () => {
     return res.data;
   };
 
-  const { data, isLoading, isError, error } = useQuery<RoomsResponse>({
+  const { data, isLoading, isError } = useQuery<RoomsResponse>({
     queryKey: [
       "getAllRooms",
       pageNumber,
@@ -131,7 +131,6 @@ const Room: React.FC = () => {
         pageNumber={pageNumber}
         setPageNumber={setPageNumber}
         dataRooms={data}
-        error={error}
         isError={isError}
       />
     </div>

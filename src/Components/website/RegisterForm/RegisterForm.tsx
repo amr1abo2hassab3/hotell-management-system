@@ -37,11 +37,11 @@ const RegisterForm = () => {
         navigate("/login");
       }, 2000);
     } catch (error) {
-      console.log(error?.response?.data);
       if (axios.isAxiosError(error) && error.response?.data) {
         setServerErrors(
           Array.isArray(error.response.data) ? error.response.data : []
         );
+        console.log(error?.response?.data);
       } else {
         setServerErrors([]);
       }
