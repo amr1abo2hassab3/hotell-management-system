@@ -20,7 +20,7 @@ export interface Room {
 }
 
 export interface RoomsResponse {
-  rooms: Room[];
+  data: Room[];
   totalCount: number;
   pageNumber: number;
   pageSize: number;

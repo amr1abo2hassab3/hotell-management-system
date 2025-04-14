@@ -7,6 +7,8 @@ import { Room } from "../../../interfaces/roomTypes";
 const FeaturedRooms = () => {
   const { data, isLoading } = useGetAllFeatured();
 
+  console.log(data);
+
   if (isLoading) return <LoaderScreen />;
   return (
     <div className="container mx-auto flex-col flex gap-8">
@@ -25,7 +27,7 @@ const FeaturedRooms = () => {
         </Link>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4   gap-[56px]">
-        {data?.rooms?.map((item: Room) => (
+        {data?.data?.map((item: Room) => (
           <FeaturedRoomsCard key={item.roomId} item={item} />
         ))}
       </div>
