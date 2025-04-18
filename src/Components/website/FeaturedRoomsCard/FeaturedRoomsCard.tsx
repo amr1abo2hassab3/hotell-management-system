@@ -25,7 +25,7 @@ const FeaturedRoomsCard = ({ item }: FeaturedRoomsCardProps) => {
       <div className="mb-4">
         <img
           className="h-[200px] w-full object-fit-contain"
-          src={item.roomPicture}
+          src={item.roomPictures[0]}
           alt={item.roomDescription}
         />
       </div>

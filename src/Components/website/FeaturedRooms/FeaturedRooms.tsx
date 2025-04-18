@@ -7,8 +7,6 @@ import { Room } from "../../../interfaces/roomTypes";
 const FeaturedRooms = () => {
   const { data, isLoading } = useGetAllFeatured();
 
-  console.log(data);
-
   if (isLoading) return <LoaderScreen />;
   return (
     <div className="container mx-auto flex-col flex gap-8">

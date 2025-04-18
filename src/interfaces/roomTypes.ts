@@ -6,7 +6,6 @@ export interface Service {
 
 export interface Room {
   roomId: number;
-  roomPicture: string;
   roomPictures:string[]
   roomPrice: number;
   roomDescription: string;

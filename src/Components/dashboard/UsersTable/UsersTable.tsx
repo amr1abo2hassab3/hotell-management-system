@@ -117,8 +117,6 @@ const UsersTable = () => {
     }
   }, [searchQuery]);
 
-  console.log(searchQuery.length);
-
   return (
     <div className="py-4 flex flex-col gap-4">
       <UserDetails

@@ -10,7 +10,7 @@ const CardRoom = ({ room }: CardRoomProps) => {
     <div className="p-[16px] bg-[#FFFFFF] rounded-[16px] flex flex-col sm:flex-row gap-[12px] ">
       <div className="min-w-[270px] h-[200px] rounded-[8px] overflow-hidden">
         <img
-          src={room.roomPicture}
+          src={room.roomPictures[0]}
           alt={room.roomDescription}
           className="w-full h-full object-fit-cover"
         />

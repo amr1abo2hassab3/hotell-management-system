@@ -40,8 +40,8 @@ const RoomDetails = () => {
               />
             </div>
 
-            <div className="flex flex-col lg:flex-row justify-between items-center gap-5">
-              <div className="w-full lg:w-[60%] flex flex-wrap items-center justify-between gap-6">
+            <div className="flex flex-col lg:flex-row  items-center gap-5">
+              <div className="w-full lg:w-[60%] flex flex-wrap items-center  gap-6">
                 {data?.roomPictures?.map((img: string, index: number) => (
                   <div
                     onClick={() => setIndexImage(index)}

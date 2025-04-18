@@ -35,11 +35,13 @@ const AllRooms = ({
           <CardRoom key={room.roomId} room={room} />
         ))}
       </div>
-      <Pagination
-        totalPages={Math.max(1, Math.ceil(dataRooms?.totalPages || 0))}
-        setPageNumber={setPageNumber}
-        pageNumber={pageNumber}
-      />
+      {dataRooms && dataRooms?.totalPages > 1 && (
+        <Pagination
+          totalPages={Math.max(1, Math.ceil(dataRooms?.totalPages || 0))}
+          setPageNumber={setPageNumber}
+          pageNumber={pageNumber}
+        />
+      )}
     </div>
   );
 };

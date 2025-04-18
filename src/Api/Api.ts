@@ -18,6 +18,10 @@ export const services:string = "/api/Service";
 
 
 // <<<<<< Dashboard >>>>>>>
+// users management 
 export const users: string = "/api/Users";
 export const addUser: string = "/api/Users/add";
-export const searchByEmail:string = "/api/Users/search-by-email"
+export const searchByEmail: string = "/api/Users/search-by-email";
+
+// rooms management 
+export const creatNewRoom: string = "/api/Rooms/create";

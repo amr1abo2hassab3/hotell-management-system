@@ -17,6 +17,7 @@ import HomeDashboard from "./Pages/dashboard/HomeDashboard/HomeDashboard";
 import Reservations from "./Pages/dashboard/Reservations/Reservations";
 import AdminRoute from "./Components/dashboard/AdminRoute/AdminRoute";
 import UserDashboard from "./Pages/dashboard/UsersDashboard/UsersDashboard";
+import RoomDashboard from "./Pages/dashboard/RoomDashboard/RoomDashboard";
 
 const router = createBrowserRouter([
   {
@@ -116,6 +117,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <HomeDashboard />,
+      },
+      {
+        path: "rooms",
+        element: <RoomDashboard />,
       },
       {
         path: "reservations",
