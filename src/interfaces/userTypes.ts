@@ -24,3 +24,4 @@ export interface UserTypeAdd {
       password: string,
       role: string,
 }
+
