@@ -18,6 +18,9 @@ import Reservations from "./Pages/dashboard/Reservations/Reservations";
 import AdminRoute from "./Components/dashboard/AdminRoute/AdminRoute";
 import UserDashboard from "./Pages/dashboard/UsersDashboard/UsersDashboard";
 import RoomDashboard from "./Pages/dashboard/RoomDashboard/RoomDashboard";
+import Sittings from "./Pages/website/Sittings/Sittings";
+import SavedRooms from "./Components/website/SavedRooms/SavedRooms";
+import ServicesDashboard from "./Pages/dashboard/ServicesDashboard/ServicesDashboard";
 
 const router = createBrowserRouter([
   {
@@ -104,6 +107,20 @@ const router = createBrowserRouter([
           </ProtectedAuth>
         ),
       },
+      {
+        path: "/sittings",
+        element: (
+          <ProtectedRoute>
+            <Sittings />
+          </ProtectedRoute>
+        ),
+        children: [
+          {
+            index: true,
+            element: <SavedRooms />,
+          },
+        ],
+      },
     ],
   },
   {
@@ -129,6 +146,10 @@ const router = createBrowserRouter([
       {
         path: "users",
         element: <UserDashboard />,
+      },
+      {
+        path: "services",
+        element: <ServicesDashboard />,
       },
     ],
   },

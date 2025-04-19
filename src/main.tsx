@@ -11,14 +11,17 @@ import App from "./App.tsx";
 import AuthProvider from "./Context/AuthContext/AuthContext.tsx";
 import { ToastContainer } from "react-toastify";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import FavoriteListContextProvider from "./Context/FavoriteListContext.tsx";
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <ToastContainer />
-        <App />
+        <FavoriteListContextProvider>
+          <ToastContainer />
+          <App />
+        </FavoriteListContextProvider>
       </AuthProvider>
     </QueryClientProvider>
   </StrictMode>

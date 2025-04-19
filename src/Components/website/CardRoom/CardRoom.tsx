@@ -1,11 +1,15 @@
 import { Link } from "react-router-dom";
 import { Room } from "../../../interfaces/roomTypes";
+import { useContext } from "react";
+import { FavoriteContext } from "../../../Context/FavoriteListContext";
 
 type CardRoomProps = {
   room: Room;
 };
 
 const CardRoom = ({ room }: CardRoomProps) => {
+  const { handleAddToUserFavorite, handleDeleteFromUserFavorite } =
+    useContext(FavoriteContext);
   return (
     <div className="p-[16px] bg-[#FFFFFF] rounded-[16px] flex flex-col sm:flex-row gap-[12px] ">
       <div className="min-w-[270px] h-[200px] rounded-[8px] overflow-hidden">
@@ -21,7 +25,18 @@ const CardRoom = ({ room }: CardRoomProps) => {
             {room.roomDescription}
           </h3>
           <div className="bg-[#ECF0F1] w-[50px] h-[50px] rounded flex items-center justify-center">
-            <i className="fa-regular fa-heart text-[#F12525] text-[32px] cursor-pointer"></i>
+            <i
+              onClick={() => {
+                if (room.isFavorite) {
+                  handleDeleteFromUserFavorite(room?.roomId);
+                } else {
+                  handleAddToUserFavorite(room?.roomId);
+                }
+              }}
+              className={`${
+                room.isFavorite ? "fa-solid" : "fa-regular"
+              } fa-heart text-[#F12525] text-[32px] cursor-pointer`}
+            ></i>
           </div>
         </div>
         <div className="flex items-center gap-1">

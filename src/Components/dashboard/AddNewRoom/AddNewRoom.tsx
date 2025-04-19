@@ -54,7 +54,10 @@ const AddNewRoom = ({ setIsOpen, isOpen }: AddNewRoomProps) => {
       formData.append("RoomDescription", values.description);
       formData.append("RoomStatus", values.status);
       formData.append("Classification", values.classification.toString());
-      formData.append("ServiceIds", values.services.toString());
+      values.services.forEach((service) => {
+        formData.append("ServiceIds", service.toString());
+      });
+
       values.images.forEach((img) => {
         formData.append("AdditionalRoomPictures", img);
       });
@@ -81,6 +84,7 @@ const AddNewRoom = ({ setIsOpen, isOpen }: AddNewRoomProps) => {
             theme: "light",
           }
         );
+
         await queryClient.invalidateQueries({ queryKey: ["getAllRooms"] });
         handleClose();
       } catch (err) {
@@ -268,11 +272,11 @@ const AddNewRoom = ({ setIsOpen, isOpen }: AddNewRoomProps) => {
               Room Images
             </label>
             <div className="flex flex-wrap gap-4">
-              {[1, 2, 3].map((item) => (
+              {[1].map((item) => (
                 <label
                   key={item}
                   htmlFor={`image-upload-${item}`}
-                  className="w-24 h-24 border-2 border-dashed border-gray-300 rounded-md flex items-center justify-center cursor-pointer hover:bg-gray-50"
+                  className="w-full h-24 border-2 border-dashed border-gray-300 rounded-md flex items-center justify-center cursor-pointer hover:bg-gray-50"
                 >
                   <span className="text-xs text-gray-500 text-center p-2">
                     Click to upload
@@ -280,6 +284,7 @@ const AddNewRoom = ({ setIsOpen, isOpen }: AddNewRoomProps) => {
                   <input
                     id={`image-upload-${item}`}
                     type="file"
+                    multiple
                     accept="image/*"
                     onChange={handleImageUpload}
                     className="hidden"

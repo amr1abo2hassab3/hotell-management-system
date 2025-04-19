@@ -4,6 +4,8 @@ import imgBed from "../../../assets/images/bed.png";
 import imgTv from "../../../assets/images/tv.png";
 import { Link } from "react-router-dom";
 import { Room, Service } from "../../../interfaces/roomTypes";
+import { useContext } from "react";
+import { FavoriteContext } from "../../../Context/FavoriteListContext";
 
 interface Amenity {
   img: string;
@@ -20,6 +22,9 @@ const amenities: Amenity[] = [
   { img: imgTv, label: "TV" },
 ];
 const FeaturedRoomsCard = ({ item }: FeaturedRoomsCardProps) => {
+  const { handleAddToUserFavorite, handleDeleteFromUserFavorite } =
+    useContext(FavoriteContext);
+
   return (
     <div className="p-[16px]  rounded-[16px] flex flex-col gap-[8px] bg-[#FFFFFF]">
       <div className="mb-4">
@@ -57,9 +62,19 @@ const FeaturedRoomsCard = ({ item }: FeaturedRoomsCardProps) => {
             book now
           </Link>
           {item.isFavorite ? (
-            <i className="fa-solid fa-heart text-[#E8587A] text-[32px] cursor-pointer"></i>
+            <i
+              onClick={() => {
+                handleDeleteFromUserFavorite(item.roomId);
+              }}
+              className="fa-solid fa-heart text-[#E8587A] text-[32px] cursor-pointer"
+            ></i>
           ) : (
-            <i className="fa-regular fa-heart text-[#E8587A] text-[32px] cursor-pointer"></i>
+            <i
+              onClick={() => {
+                handleAddToUserFavorite(item.roomId);
+              }}
+              className="fa-regular fa-heart text-[#E8587A] text-[32px] cursor-pointer"
+            ></i>
           )}
         </div>
       </div>

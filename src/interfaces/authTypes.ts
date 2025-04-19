@@ -6,6 +6,7 @@ export interface AuthContextType {
   phoneNumber: string;
   role: string;
   token: string;
+  id: string;
 }
 
 export interface AuthContextProps {

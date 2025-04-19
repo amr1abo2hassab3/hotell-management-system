@@ -13,7 +13,6 @@ import RoomDetailsDashboard from "../RoomDetailsDashboard/RoomDetailsDashboard";
 const RoomsTables = () => {
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [isOpen, setIsOpen] = useState<boolean>(false);
-
   const [roomId, setRoomId] = useState<number>(0 as number);
   const { userData } = useContext<AuthContextProps>(AuthContext);
 

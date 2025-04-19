@@ -13,7 +13,9 @@ export const rooms: string = "/api/Rooms";
 export const roomTypes: string = "/api/Rooms/roomtypes";
 export const roomFilter:string = "/api/Rooms/rooms";
 // Services
-export const services:string = "/api/Service";
+export const services: string = "/api/Service";
+// favorite 
+export const favorite:string =  "/api/Favorite"
 
 
 
