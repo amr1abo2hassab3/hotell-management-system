@@ -112,13 +112,6 @@ const ServiceDetailsDashboard = ({
                         ${serviceData.servicePrice}
                       </span>
                     </div>
-
-                    <div className="flex justify-between border-b pb-2">
-                      <span className="text-gray-600">Category:</span>
-                      <span className="font-medium">
-                        {serviceData.category || "N/A"}
-                      </span>
-                    </div>
                   </div>
                 </div>
 

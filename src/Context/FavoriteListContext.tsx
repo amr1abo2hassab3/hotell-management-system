@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext } from "react";
 import { baseUrl, favorite } from "../Api/Api";
 import { AuthContext } from "./AuthContext/AuthContext";
 import { toast } from "react-toastify";
