@@ -9,10 +9,12 @@ import LoaderDashboard from "../LoaderDashboard/LoaderDashboard";
 import Pagination from "../../Pagination/Pagination";
 import { toast } from "react-toastify";
 import RoomDetailsDashboard from "../RoomDetailsDashboard/RoomDetailsDashboard";
+import EditRoom from "../EditRoom/EditRoom";
 
 const RoomsTables = () => {
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
   const [roomId, setRoomId] = useState<number>(0 as number);
   const { userData } = useContext<AuthContextProps>(AuthContext);
 
@@ -74,7 +76,17 @@ const RoomsTables = () => {
 
   return (
     <div className="py-4 flex flex-col gap-4">
-      <RoomDetailsDashboard roomId={roomId} onClose={onClose} isOpen={isOpen} />
+      <RoomDetailsDashboard
+        roomId={roomId}
+        onClose={onClose}
+        isOpen={isOpen}
+        setIsEditModalOpen={setIsEditModalOpen}
+      />
+      <EditRoom
+        isOpen={isEditModalOpen}
+        setIsOpen={setIsEditModalOpen}
+        roomId={roomId}
+      />
       <div className="w-full flex flex-col gap-4">
         {/* Header + Search */}
         <div className="flex justify-between items-center flex-wrap gap-3 px-3">
@@ -157,17 +169,29 @@ const RoomsTables = () => {
                       </p>
                     </td>
                     <td className="p-4 border-x border-slate-200">
-                      <ul>
-                        {room.services.map(
-                          (service: Service, index: number) => (
-                            <li key={index}>{service.serviceName}</li>
-                          )
-                        )}
-                      </ul>
+                      {room?.services?.length ? (
+                        <ul>
+                          {room?.services?.map(
+                            (service: Service, index: number) => (
+                              <li key={index}>{service.serviceName}</li>
+                            )
+                          )}
+                        </ul>
+                      ) : (
+                        <p className="py-5 text-center  font-bold text-red-600">
+                          No Services In This Room 🥱
+                        </p>
+                      )}
                     </td>
                     <td className="p-4 border-x border-slate-200">
                       <div className="flex flex-col items-center gap-2 min-w-[120px]">
-                        <button className="bg-yellow-400 text-white w-full p-2 rounded-md flex items-center justify-center gap-2 font-bold hover:opacity-90">
+                        <button
+                          onClick={() => {
+                            setRoomId(room.roomId);
+                            setIsEditModalOpen(true);
+                          }}
+                          className="bg-yellow-400 text-white w-full p-2 rounded-md flex items-center justify-center gap-2 font-bold hover:opacity-90"
+                        >
                           <i className="fas fa-pen"></i> Edit
                         </button>
                         <button
@@ -233,13 +257,19 @@ const RoomsTables = () => {
                         ${room.roomPrice}
                       </p>
                       <div className="my-2">
-                        <ul>
-                          {room.services.map(
-                            (service: Service, index: number) => (
-                              <li key={index}>{service.serviceName}</li>
-                            )
-                          )}
-                        </ul>
+                        {room?.services?.length ? (
+                          <ul>
+                            {room?.services?.map(
+                              (service: Service, index: number) => (
+                                <li key={index}>{service.serviceName}</li>
+                              )
+                            )}
+                          </ul>
+                        ) : (
+                          <p className="py-5 text-center text-[25px] font-bold text-red-600">
+                            No Services In This Room 🥱
+                          </p>
+                        )}
                       </div>
                       <p
                         className={`text-xs my- mt-1 inline-block px-3 py-1 rounded-full font-semibold capitalize ${
@@ -257,7 +287,13 @@ const RoomsTables = () => {
                       </p>
                     </div>
                     <div className="flex gap-2 mt-4">
-                      <button className="bg-yellow-400 text-white flex-1 py-2 rounded-md text-sm font-bold hover:opacity-90">
+                      <button
+                        onClick={() => {
+                          setRoomId(room.roomId);
+                          setIsEditModalOpen(true);
+                        }}
+                        className="bg-yellow-400 text-white flex-1 py-2 rounded-md text-sm font-bold hover:opacity-90"
+                      >
                         <i className="fas fa-pen mr-1"></i> Edit
                       </button>
                       <button

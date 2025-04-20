@@ -8,6 +8,7 @@ import { Room } from "../../../interfaces/roomTypes";
 type RoomDetailsDashboardProps = {
   roomId: number;
   isOpen: boolean;
+  setIsEditModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   onClose: () => void;
 };
 
@@ -15,6 +16,7 @@ const RoomDetailsDashboard = ({
   roomId,
   onClose,
   isOpen,
+  setIsEditModalOpen,
 }: RoomDetailsDashboardProps) => {
   const handleGetRoomDetails = (id: number | undefined) => {
     if (!id) return {} as Room;
@@ -197,7 +199,13 @@ const RoomDetailsDashboard = ({
               >
                 Close
               </button>
-              <button className="px-6 py-2 bg-[#C4A484] text-white rounded-md hover:bg-[#a06427] transition">
+              <button
+                onClick={() => {
+                  onClose();
+                  setIsEditModalOpen(true);
+                }}
+                className="px-6 py-2 bg-[#C4A484] text-white rounded-md hover:bg-[#a06427] transition"
+              >
                 Edit Room
               </button>
             </div>

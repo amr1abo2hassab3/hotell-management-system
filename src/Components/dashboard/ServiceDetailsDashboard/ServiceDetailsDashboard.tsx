@@ -7,6 +7,7 @@ import { ServiceType } from "../../../interfaces/srvicesTypes";
 interface ServiceDetailsDashboardProps {
   serviceId: number;
   isOpen: boolean;
+  setIsEditModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   onClose: () => void;
 }
 
@@ -14,6 +15,7 @@ const ServiceDetailsDashboard = ({
   serviceId,
   isOpen,
   onClose,
+  setIsEditModalOpen,
 }: ServiceDetailsDashboardProps) => {
   const handleGetServiceDetails = (id: number | undefined) => {
     if (!id) return {} as ServiceType;
@@ -23,7 +25,7 @@ const ServiceDetailsDashboard = ({
   const { data: serviceData, isLoading } = useQuery<ServiceType>({
     queryKey: ["getServiceDetails", serviceId],
     queryFn: () => handleGetServiceDetails(serviceId),
-    enabled: !!serviceId,
+    enabled: !!serviceId && isOpen,
   });
 
   if (isLoading) return <LoaderScreen />;
@@ -136,7 +138,13 @@ const ServiceDetailsDashboard = ({
               >
                 Close
               </button>
-              <button className="px-6 py-2 bg-[#C4A484] text-white rounded-md hover:bg-[#a06427] transition">
+              <button
+                onClick={() => {
+                  onClose();
+                  setIsEditModalOpen(true);
+                }}
+                className="px-6 py-2 bg-[#C4A484] text-white rounded-md hover:bg-[#a06427] transition"
+              >
                 Edit Service
               </button>
             </div>

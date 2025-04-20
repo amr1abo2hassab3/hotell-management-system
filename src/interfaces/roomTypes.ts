@@ -2,6 +2,7 @@ export interface Service {
   serviceName: string;
   servicePrice: number;
   quantity: number;
+  serviceId: number;
 }
 
 export interface Room {
@@ -11,6 +12,7 @@ export interface Room {
   roomDescription: string;
   roomStatus: string;
   roomType: string;
+  roomTypeId?: number;
   classification: number;
   roomTypeName: string;
   isFeatured: boolean;
