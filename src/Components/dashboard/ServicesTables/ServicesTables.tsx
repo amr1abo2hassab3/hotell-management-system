@@ -117,7 +117,7 @@ const ServicesTables = () => {
                           "https://via.placeholder.com/40"
                         }
                         alt={service.serviceName}
-                        className="w-[40px] h-[40px] object-cover rounded-full mx-auto"
+                        className="w-[90%] h-[150px] object-cover rounded mx-auto"
                       />
                     </td>
                     <td className="p-4 border-x border-slate-200">

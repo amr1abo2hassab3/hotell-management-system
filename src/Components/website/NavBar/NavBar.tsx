@@ -1,28 +1,32 @@
 import { useContext, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import logo from "../../../assets/images/logo.jpg";
 import { AuthContextProps } from "../../../interfaces/authTypes";
 import { AuthContext } from "../../../Context/AuthContext/AuthContext";
 import { navLinksTypes } from "../../../interfaces/navBarTypes";
 import useHandleLogOut from "../../../customHooks/useHandleLogOut";
+import SideBarSittings from "../SideBarSittings/SideBarSittings";
 
 const navLinks: navLinksTypes[] = [
   { to: "/", name: "home" },
   { to: "/room", name: "room" },
   { to: "/services", name: "services" },
   { to: "/contactus", name: "contact us" },
-  { to: "/sittings", name: "Sittings" },
 ];
 
 const NavBar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const [language, setLanguage] = useState<string>("English");
   const { userData } = useContext<AuthContextProps>(AuthContext);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
+  const location = useLocation();
   const handleLogOut = useHandleLogOut();
 
   return (
     <nav className="bg-white h-[102px] relative top-0 left-0 right-0 z-40 shadow-md">
+      <SideBarSittings isOpen={isOpen} setIsOpen={setIsOpen} />
+
       <div className="container mx-auto flex justify-between items-center px-4 md:px-8">
         {/* Logo */}
         <div className="flex items-center">
@@ -45,6 +49,25 @@ const NavBar: React.FC = () => {
                 {item.name}
               </NavLink>
             ))}
+            <NavLink
+              className="capitalize flex items-center gap-3 text-gray-700 font-bold hover:text-mainColor transition"
+              to={"/sittings"}
+            >
+              {location.pathname === "/sittings" ? (
+                <>
+                  {" "}
+                  Sittings
+                  <button
+                    className="bg-[#C4A484] text-white p-2 rounded"
+                    onClick={() => setIsOpen(true)}
+                  >
+                    <i className="fa-solid fa-right-from-bracket"></i>{" "}
+                  </button>
+                </>
+              ) : (
+                "Sittings"
+              )}
+            </NavLink>
           </div>
         )}
 
@@ -116,11 +139,35 @@ const NavBar: React.FC = () => {
                   key={item.name}
                   className="text-gray-700 font-bold w-full text-center border-b-[1px] border-[#986d3c42]  !m-0 p-[15px_5px]"
                   to={item.to}
-                  onClick={() => setMenuOpen(false)}
+                  onClick={() => {
+                    setMenuOpen(false);
+                  }}
                 >
                   {item.name}
                 </NavLink>
               ))}
+              <NavLink
+                className="capitalize flex items-center gap-3 text-gray-700 font-bold hover:text-mainColor transition"
+                to={"/sittings"}
+              >
+                {location.pathname === "/sittings" ? (
+                  <>
+                    {" "}
+                    Sittings
+                    <button
+                      className="bg-[#C4A484] text-white p-2 rounded"
+                      onClick={() => {
+                        setIsOpen(true);
+                        setMenuOpen(false);
+                      }}
+                    >
+                      <i className="fa-solid fa-right-from-bracket"></i>{" "}
+                    </button>
+                  </>
+                ) : (
+                  "Sittings"
+                )}
+              </NavLink>
             </>
           )}
           <div className="flex items-center space-x-4">

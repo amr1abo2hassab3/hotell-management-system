@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import imgIcon from "../../../assets/images/homeimgdash.jpg";
 import BoxHomeDashboard from "../../../Components/dashboard/BoxHomeDashboard/BoxHomeDashboard";
 import CurrentBookings from "../../../Components/dashboard/CurrentBookings/CurrentBookings";
+import { AuthContextProps } from "../../../interfaces/authTypes";
+import { AuthContext } from "../../../Context/AuthContext/AuthContext";
 
 export interface HomeDashboardData {
   title: string;
@@ -23,12 +26,14 @@ const data: HomeDashboardData[] = [
 ];
 
 const HomeDashboard = () => {
+  const { userData } = useContext<AuthContextProps>(AuthContext);
+
   return (
     <div className="p-[32px] flex flex-col gap-4">
       <div>
         {" "}
         <h2 className="text-[#202430] text-[24px] font-bold">
-          Welcome Tahnoon Hamad 👋
+          Welcome {userData?.fullName && userData.fullName} 👋
         </h2>
         <p className="text-[#ABADB7] text-[16px] font-bold">
           System Administrator

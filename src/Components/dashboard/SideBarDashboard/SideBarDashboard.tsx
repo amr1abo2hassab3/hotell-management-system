@@ -1,5 +1,8 @@
 import { NavLink, useLocation } from "react-router-dom";
 import logo from "../../../assets/images/logo.jpg";
+import { useContext } from "react";
+import { AuthContextProps } from "../../../interfaces/authTypes";
+import { AuthContext } from "../../../Context/AuthContext/AuthContext";
 
 interface LinksDashboardType {
   label: string;
@@ -37,6 +40,7 @@ interface SideBarDashboardProps {
 }
 
 const SideBarDashboard = ({ setIsOpen, isOpen }: SideBarDashboardProps) => {
+  const { userData } = useContext<AuthContextProps>(AuthContext);
   const location = useLocation();
 
   return (
@@ -44,13 +48,13 @@ const SideBarDashboard = ({ setIsOpen, isOpen }: SideBarDashboardProps) => {
       {/* خلفية سوداء عند فتح السايدبار */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40"
+          className="fixed inset-0 min-h-screen bg-black bg-opacity-50 z-40 "
           onClick={() => setIsOpen(false)}
         ></div>
       )}
 
       <div
-        className={`fixed z-50 top-0 left-0 min-h-screen w-[300px] bg-[#EDE6DD] px-5 py-8 transform transition-all duration-300 ease-out
+        className={`fixed z-50 top-0 left-0 min-h-screen overflow-y-auto w-[300px] bg-[#EDE6DD] px-5 py-8 transform transition-all duration-300 ease-out
     ${
       isOpen
         ? "translate-x-0 opacity-100 scale-100"
@@ -68,8 +72,8 @@ const SideBarDashboard = ({ setIsOpen, isOpen }: SideBarDashboardProps) => {
           </button>
         </div>
 
-        <div className="flex flex-col h-full justify-between">
-          <div className="flex flex-col  gap-5">
+        <div className="flex flex-col h-full">
+          <div className="flex flex-col gap-5">
             <div className="flex items-center justify-center">
               <img
                 className="w-[80px] h-[80px] md:w-[102px] md:h-[102px]"
@@ -83,7 +87,7 @@ const SideBarDashboard = ({ setIsOpen, isOpen }: SideBarDashboardProps) => {
                 <li className="my-1" key={item.label}>
                   <NavLink
                     to={item.to}
-                    className={`p-4 flex items-center gap-2 cursor-pointer text-[18px] capitalize transition-all duration-300
+                    className={`p-4 flex rounded items-center gap-2 cursor-pointer text-[18px] capitalize transition-all duration-300
     ${
       location.pathname === item.to
         ? "bg-[#C4A484] text-[#8B6B4E]"
@@ -99,15 +103,17 @@ const SideBarDashboard = ({ setIsOpen, isOpen }: SideBarDashboardProps) => {
             </ul>
           </div>
 
-          <div className="flex items-center gap-3">
-            <div className="w-[48px] h-[48px] rounded-full overflow-hidden">
+          <div className="flex items-center gap-3 mt-auto py-5 bottom-0 absolute bg-[#EDE6DD]">
+            <div className="w-[48px] h-[48px] rounded-full overflow-hidden ">
               <img src={logo} className="w-full h-full object-cover" alt="" />
             </div>
             <div>
               <h2 className="capitalize text-[16px] text-[#202430] font-bold">
-                amr mohammed
+                {(userData?.fullName && userData?.fullName) || "user"}
               </h2>
-              <h3 className="text-[12px] text-[#51586F]">amr@gmail.com</h3>
+              <h3 className="text-[12px] text-[#51586F]">
+                {(userData?.email && userData?.email) || "admin@gmail.com"}
+              </h3>
             </div>
           </div>
         </div>

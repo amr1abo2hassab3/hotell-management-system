@@ -33,6 +33,8 @@ const RoomsTables = () => {
   };
 
   const handleDeleteRoom = async (roomId: number) => {
+    console.log(roomId);
+
     try {
       await toast.promise(
         axios.delete(`${baseUrl}${rooms}/${roomId}?id=${roomId}`),

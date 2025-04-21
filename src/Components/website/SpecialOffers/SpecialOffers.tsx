@@ -45,7 +45,7 @@ const SpecialOffers = () => {
           Lots of discounts to make your vacation more economical.
         </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 px-4 md:px-0">
         {offers.map((offer, index) => (
           <div
             key={index}

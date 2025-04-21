@@ -104,10 +104,6 @@ const EditRoom = ({ setIsOpen, isOpen, roomId }: EditRoomProps) => {
         formData.append("RoomPictures", img);
       });
 
-      // // Append existing images that should remain
-      // values.existingImages.forEach((img) => {
-      //   formData.append("ExistingRoomPictures", img);
-      // });
       for (const [key, val] of formData.entries()) {
         console.log(key, val);
       }
