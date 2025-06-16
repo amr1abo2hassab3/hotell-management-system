@@ -112,7 +112,7 @@ const AddServicesQuantity = ({ services }: AddServicesQuantityProps) => {
               {/* زر الإرسال */}
               <button
                 className="bg-[#007AFF] text-white rounded-[8px] px-[16px] py-[8px] font-semibold"
-                onClick={() => handleSelectServices(service.serviceId)}
+                onClick={handleSelectServices}
               >
                 Select
               </button>
