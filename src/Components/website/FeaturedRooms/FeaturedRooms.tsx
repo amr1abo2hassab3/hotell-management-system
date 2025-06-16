@@ -9,13 +9,13 @@ const FeaturedRooms = () => {
 
   if (isLoading) return <LoaderScreen />;
   return (
-    <div className="container mx-auto flex-col flex gap-8">
-      <div className="flex items-center justify-between px-2">
+    <div className="container mx-auto flex-col flex gap-8 px-4">
+      <div className="flex items-center justify-between ">
         <h2 className="md:text-[32px] text-[20px] font-bold">
           Featured <span className="text-[#D4AF37]">Room Types</span>
         </h2>
         <Link
-          to={"/services"}
+          to={"/room"}
           className="flex items-center gap-2 md:gap-4 text-[#8B6B4E] text-[12px] md:text-[16px] "
         >
           <span> View all rooms</span>

@@ -1,6 +1,5 @@
 import { CollectionServ } from "../../../Components/website/CollectionServ/CollectionServ";
 import FeaturedRooms from "../../../Components/website/FeaturedRooms/FeaturedRooms";
-import FormDate from "../../../Components/website/FormDate/FormDate";
 import SliderImages from "../../../Components/website/SliderImages/SliderImages";
 import SpecialOffers from "../../../Components/website/SpecialOffers/SpecialOffers";
 import TextSliderHome from "../../../Components/website/TextSliderHome/TextSliderHome";
@@ -27,9 +26,8 @@ const Home: React.FC = () => {
         images={images}
         settings={settings}
         TextSlider={<TextSliderHome />}
-        formComponent={<FormDate />}
       />
-      ;
+
       <CollectionServ />
       <FeaturedRooms />
       <SpecialOffers />

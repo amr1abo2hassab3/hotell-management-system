@@ -5,6 +5,7 @@ import {
   AuthContextType,
   AuthProviderProps,
 } from "../../interfaces/authTypes";
+import { BookingContextType } from "../../interfaces/BookingContextType";
 
 export const AuthContext = createContext<AuthContextProps>(
   {} as AuthContextProps
@@ -12,6 +13,9 @@ export const AuthContext = createContext<AuthContextProps>(
 
 const AuthProvider = ({ children }: AuthProviderProps) => {
   const [userData, setUserData] = useState<AuthContextType | null>(null);
+  const [bookingId, setBookingId] = useState<BookingContextType>(
+    {} as BookingContextType
+  );
 
   useEffect(() => {
     const storedData =
@@ -26,6 +30,8 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
       value={{
         userData,
         setUserData,
+        bookingId,
+        setBookingId,
       }}
     >
       {children}

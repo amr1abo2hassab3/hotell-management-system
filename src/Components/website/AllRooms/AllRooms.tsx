@@ -28,9 +28,9 @@ const AllRooms = ({
   }
 
   return (
-    <div className="container mx-auto flex flex-col gap-[32px] py-5">
+    <div className="container mx-auto flex flex-col gap-[32px] py-5 px-2">
       <h2 className="text-[32px] text-white font-bold">All rooms</h2>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-[32px]">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-[32px] ">
         {dataRooms?.data?.map((room: Room) => (
           <CardRoom key={room.roomId} room={room} />
         ))}

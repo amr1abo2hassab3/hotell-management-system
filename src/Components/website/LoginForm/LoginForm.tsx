@@ -58,6 +58,7 @@ function LoginForm() {
       });
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
+        console.log(error);
         setServerErrors(error.response?.data || "Something went wrong");
       } else {
         setServerErrors("An unexpected error occurred");

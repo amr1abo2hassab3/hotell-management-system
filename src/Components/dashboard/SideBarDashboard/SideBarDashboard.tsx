@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logo from "../../../assets/images/logo.jpg";
 import { useContext } from "react";
 import { AuthContextProps } from "../../../interfaces/authTypes";
@@ -85,7 +85,7 @@ const SideBarDashboard = ({ setIsOpen, isOpen }: SideBarDashboardProps) => {
             <ul className="flex flex-col">
               {LinksDashboard.map((item) => (
                 <li className="my-1" key={item.label}>
-                  <NavLink
+                  <Link
                     to={item.to}
                     className={`p-4 flex rounded items-center gap-2 cursor-pointer text-[18px] capitalize transition-all duration-300
     ${
@@ -97,7 +97,7 @@ const SideBarDashboard = ({ setIsOpen, isOpen }: SideBarDashboardProps) => {
                   >
                     <i className={`fa-solid ${item.icon}`}></i>
                     {item.label}
-                  </NavLink>
+                  </Link>
                 </li>
               ))}
             </ul>

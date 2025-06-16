@@ -2,6 +2,8 @@ import { SliderImagesProps } from "../../../interfaces/sliderTypes";
 
 import Slider from "react-slick";
 
+
+
 const SliderImages = ({
   settings,
   images,

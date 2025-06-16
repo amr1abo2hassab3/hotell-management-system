@@ -19,8 +19,6 @@ const NewPasswordForm = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (values: resetValues) => {
-    console.log(values);
-
     setIsLoading(true);
     try {
       const res = await axios.post(`${baseUrl}${resetPassword}`, values);

@@ -1,7 +1,6 @@
 import axios from "axios";
 import AllRooms from "../../../Components/website/AllRooms/AllRooms";
 import CheckBoxForm from "../../../Components/website/CheckBoxForm/CheckBoxForm";
-import FormDate from "../../../Components/website/FormDate/FormDate";
 import SliderImages from "../../../Components/website/SliderImages/SliderImages";
 import TextSliderRoom from "../../../Components/website/TextSliderRoom/TextSliderRoom";
 import img1 from "../../../assets/images/sliderroom.jpg";
@@ -107,7 +106,6 @@ const Room: React.FC = () => {
     enabled: !!userData?.token,
   });
 
-
   if (isLoading) return <LoaderScreen />;
 
   return (
@@ -117,7 +115,6 @@ const Room: React.FC = () => {
         settings={settings}
         TextSlider={<TextSliderRoom />}
       />
-      <FormDate />
       <CheckBoxForm
         price={price}
         setPrice={setPrice}

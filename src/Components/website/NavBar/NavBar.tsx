@@ -16,7 +16,6 @@ const navLinks: navLinksTypes[] = [
 
 const NavBar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
-  const [language, setLanguage] = useState<string>("English");
   const { userData } = useContext<AuthContextProps>(AuthContext);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -53,7 +52,8 @@ const NavBar: React.FC = () => {
               className="capitalize flex items-center gap-3 text-gray-700 font-bold hover:text-mainColor transition"
               to={"/sittings"}
             >
-              {location.pathname === "/sittings" ? (
+              {location.pathname === "/sittings" ||
+              location.pathname === "/sittings/myReservations" ? (
                 <>
                   {" "}
                   Sittings
@@ -74,19 +74,17 @@ const NavBar: React.FC = () => {
         {/* Language & Auth */}
 
         <div className="hidden md:flex items-center space-x-8">
-          <i className="fa-solid fa-globe text-xl text-gray-800"></i>
-          <select
-            className="capitalize text-gray-700 !ml-[7px] cursor-pointer bg-white border border-gray-400 rounded-md px-3 py-2 shadow-md transition focus:outline-none focus:ring-2 focus:ring-mainColor focus:shadow-lg"
-            value={language}
-            onChange={(e) => setLanguage(e.target.value)}
-          >
-            <option value="English">English</option>
-            <option value="Arabic">العربية</option>
-          </select>
+          {userData?.role.toLocaleLowerCase() === "admin" && (
+            <Link
+              to="/dashboard"
+              className="font-medium border text-[#986d3c] border-[#986d3c] px-4 py-2 rounded text-sm capitalize"
+            >
+              go to Dashboard
+            </Link>
+          )}
 
           {!userData ? (
             <>
-              {" "}
               <Link
                 to="/login"
                 className="text-mainColor text-[14px] capitalize"
@@ -150,7 +148,8 @@ const NavBar: React.FC = () => {
                 className="capitalize flex items-center gap-3 text-gray-700 font-bold hover:text-mainColor transition"
                 to={"/sittings"}
               >
-                {location.pathname === "/sittings" ? (
+                {location.pathname === "/sittings" ||
+                location.pathname === "/sittings/myReservations" ? (
                   <>
                     {" "}
                     Sittings
@@ -171,15 +170,14 @@ const NavBar: React.FC = () => {
             </>
           )}
           <div className="flex items-center space-x-4">
-            <i className="fa-solid fa-globe text-xl text-gray-800"></i>
-            <select
-              className="capitalize text-gray-700 !ml-1 cursor-pointer bg-transparent border-none focus:outline-none"
-              value={language}
-              onChange={(e) => setLanguage(e.target.value)}
-            >
-              <option value="English">English</option>
-              <option value="Arabic">العربية</option>
-            </select>
+            {userData?.role.toLocaleLowerCase() === "admin" && (
+              <Link
+                to="/dashboard"
+                className="font-medium border text-[#986d3c] border-[#986d3c] px-4 py-2 rounded text-sm capitalize"
+              >
+                go to Dashboard
+              </Link>
+            )}
           </div>
           <div className="flex flex-col space-y-4">
             {!userData ? (

@@ -7,7 +7,6 @@ interface NavBarDashboardProps {
 }
 
 const NavBarDashboard = ({ setIsOpen }: NavBarDashboardProps) => {
-  const [language, setLanguage] = useState<string>("English");
   const [menuOpen, setMenuOpen] = useState(false);
   const handleLogOut = useHandleLogOut();
   const location = useLocation();
@@ -56,15 +55,7 @@ const NavBarDashboard = ({ setIsOpen }: NavBarDashboardProps) => {
         >
           go to website
         </Link>
-        <i className="fa-solid fa-globe text-xl text-gray-800"></i>
-        <select
-          className="capitalize text-gray-700  bg-white border border-gray-400 rounded-md px-3 py-2 shadow-md transition focus:outline-none focus:ring-2 focus:ring-mainColor"
-          value={language}
-          onChange={(e) => setLanguage(e.target.value)}
-        >
-          <option value="English">English</option>
-          <option value="Arabic">العربية</option>
-        </select>
+
         <button
           onClick={handleLogOut}
           className="bg-mainColor text-white px-4 py-2 rounded text-sm"
@@ -82,17 +73,6 @@ const NavBarDashboard = ({ setIsOpen }: NavBarDashboardProps) => {
           >
             go to website
           </Link>
-          <div className="flex items-center space-x-2">
-            <i className="fa-solid fa-globe text-gray-800"></i>
-            <select
-              className="capitalize w-full bg-white border border-gray-400 rounded-md px-3 py-2"
-              value={language}
-              onChange={(e) => setLanguage(e.target.value)}
-            >
-              <option value="English">English</option>
-              <option value="Arabic">العربية</option>
-            </select>
-          </div>
           <button
             onClick={handleLogOut}
             className="w-full bg-mainColor text-white px-4 py-2 rounded text-sm"

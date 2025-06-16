@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { BookingContextType } from "./BookingContextType";
 
 export interface AuthContextType {
   email: string;
@@ -12,6 +13,8 @@ export interface AuthContextType {
 export interface AuthContextProps {
   userData: AuthContextType | null;
   setUserData: React.Dispatch<React.SetStateAction<AuthContextType | null>>;
+  bookingId: BookingContextType;
+  setBookingId: React.Dispatch<React.SetStateAction<BookingContextType>>;
 }
 
 export interface AuthProviderProps {

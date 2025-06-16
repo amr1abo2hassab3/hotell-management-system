@@ -1,19 +1,57 @@
-import { Link, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import SliderDetails from "../../../Components/website/SliderDetails/SliderDetails";
 import { useQuery } from "@tanstack/react-query";
 import { Room } from "../../../interfaces/roomTypes";
 import axios from "axios";
-import { baseUrl, rooms } from "../../../Api/Api";
+import { baseUrl, rooms, selectRoom } from "../../../Api/Api";
 import LoaderScreen from "../../../Components/website/LoaderScreen/LoaderScreen";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { toast } from "react-toastify";
+import { AuthContext } from "../../../Context/AuthContext/AuthContext";
 
 const RoomDetails = () => {
   const [indexImage, setIndexImage] = useState<number>(0);
   const { idRoom } = useParams<string>();
+  const navigate = useNavigate();
+  const { setBookingId, userData } = useContext(AuthContext);
 
   const handleGetRoomDetails = (id: string | undefined) => {
     if (!id) return {} as Room;
     return axios.get(`${baseUrl}${rooms}/${id}`).then((res) => res.data);
+  };
+  const handleSelectRoom = async (roomId: number) => {
+    try {
+      toast.info("Selecting Room...", {
+        position: "top-right",
+        autoClose: 2000,
+      });
+      if (userData?.token) {
+        const response = await axios.post(
+          `${baseUrl}${selectRoom}`,
+          {
+            roomId: roomId,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${userData?.token}`,
+            },
+          }
+        );
+
+        toast.success("Room has been Selected successfully");
+        setBookingId(response.data);
+
+        sessionStorage.setItem("bookingId", JSON.stringify(response?.data));
+        await navigate(`/booking/${roomId}`);
+      }
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const message = error.response?.data || "Failed to Select Room";
+        toast.error(message);
+      } else {
+        toast.error("Unexpected Error");
+      }
+    }
   };
 
   const { data, isLoading } = useQuery<Room>({
@@ -91,12 +129,14 @@ const RoomDetails = () => {
           {/* الـ sidebar */}
           <div className="w-full lg:w-1/4 flex flex-col items-center mt-10 lg:mt-0">
             <SliderDetails />
-            <Link
-              to={"/"}
+            <button
+              onClick={() => {
+                if (data?.roomId) handleSelectRoom(data?.roomId);
+              }}
               className="px-[16px] py-[12px] w-[226px] h-[67px] flex items-center justify-center bg-[#007AFF] rounded text-white text-[20px] lg:text-[24px] mt-7"
             >
               Book now
-            </Link>
+            </button>
           </div>
         </div>
       </div>

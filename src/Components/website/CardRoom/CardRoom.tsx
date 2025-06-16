@@ -11,7 +11,7 @@ const CardRoom = ({ room }: CardRoomProps) => {
   const { handleAddToUserFavorite, handleDeleteFromUserFavorite } =
     useContext(FavoriteContext);
   return (
-    <div className="p-[16px] bg-[#FFFFFF] rounded-[16px] flex flex-col sm:flex-row gap-[12px] ">
+    <div className="p-[16px] bg-[#FFFFFF] rounded-[16px] flex flex-col sm:flex-row gap-[12px]  ">
       <div className="min-w-[270px] h-[200px] rounded-[8px] overflow-hidden">
         <img
           src={room.roomPictures[0]}

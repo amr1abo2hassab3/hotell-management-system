@@ -21,6 +21,8 @@ import RoomDashboard from "./Pages/dashboard/RoomDashboard/RoomDashboard";
 import Sittings from "./Pages/website/Sittings/Sittings";
 import SavedRooms from "./Components/website/SavedRooms/SavedRooms";
 import ServicesDashboard from "./Pages/dashboard/ServicesDashboard/ServicesDashboard";
+import Booking from "./Pages/website/Booking/Booking";
+import MyReservations from "./Pages/website/MyReservations/MyReservations";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +58,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <Services />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/booking/:id",
+        element: (
+          <ProtectedRoute>
+            <Booking />
           </ProtectedRoute>
         ),
       },
@@ -118,6 +128,10 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <SavedRooms />,
+          },
+          {
+            path: "myReservations",
+            element: <MyReservations />,
           },
         ],
       },

@@ -11,6 +11,11 @@ interface LinksSittingsType {
 
 const LinksSittings: LinksSittingsType[] = [
   { label: "Saved rooms", icon: "fa-heart", to: "/sittings" },
+  {
+    label: "my Reservations",
+    icon: "fa-calendar-check",
+    to: "/sittings/myReservations",
+  },
 ];
 
 interface SideBarSittingsProps {

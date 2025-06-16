@@ -18,7 +18,7 @@ const RoomsTables = () => {
   const [roomId, setRoomId] = useState<number>(0 as number);
   const { userData } = useContext<AuthContextProps>(AuthContext);
 
-  const hanbdleGetAllRooms = () => {
+  const handleGetAllRooms = () => {
     return axios
       .post(
         `${baseUrl}${roomFilter}?pageNumber=${pageNumber}`,
@@ -33,8 +33,6 @@ const RoomsTables = () => {
   };
 
   const handleDeleteRoom = async (roomId: number) => {
-    console.log(roomId);
-
     try {
       await toast.promise(
         axios.delete(`${baseUrl}${rooms}/${roomId}?id=${roomId}`),
@@ -67,7 +65,7 @@ const RoomsTables = () => {
     refetch: refetchRooms,
   } = useQuery<RoomsResponse>({
     queryKey: ["getAllRooms", pageNumber],
-    queryFn: hanbdleGetAllRooms,
+    queryFn: handleGetAllRooms,
     enabled: !!userData?.token,
   });
 

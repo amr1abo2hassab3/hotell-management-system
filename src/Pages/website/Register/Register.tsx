@@ -4,7 +4,7 @@ import RegisterForm from "../../../Components/website/RegisterForm/RegisterForm"
 const Register = () => {
   return (
     <div className="bg-[#634E3A] flex min-h-[calc(100vh-102px)] py-6 w-full  justify-center items-center">
-      <div className="flex justify-between items-stretch   lg:min-h-[80vh] rounded-lg overflow-hidden w-[95%] lg:w-4/5">
+      <div className="flex justify-between items-stretch  lg:min-h-[80vh] rounded-lg overflow-hidden w-[95%] lg:w-4/5">
         {/* قسم الصورة */}
         <div className="hidden lg:flex lg:w-2/5">
           <img
