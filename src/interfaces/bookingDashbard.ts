@@ -9,12 +9,18 @@ export interface BookingResponse {
   export interface Booking {
     bookingNumber: number;
     customerName: string;
-    roomType?: string;
+    roomType?: RoomType;
     arrivalDate: string;
     departureDate: string;
     condition: string;
   }
   
+
+export interface RoomType {
+  roomTypeId: number;
+  name: string;
+  isFeatured: boolean;
+ }
 
 export interface MyBooking {
   bookingId: number;

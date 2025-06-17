@@ -119,16 +119,35 @@ const BookingDetailsDashboard = ({
           </div>
 
           {/* Services */}
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">
+          <div className="p-4 bg-white rounded-xl shadow-sm">
+            <h3 className="text-xl font-bold text-gray-800 mb-4 border-b pb-2">
               Services
             </h3>
             {bookingData?.services?.length ? (
-              <ul className="space-y-2">
+              <ul className="space-y-3">
                 {bookingData?.services?.map((service, index) => (
-                  <li key={index} className="flex items-center gap-2">
-                    <i className="fa-solid fa-check text-green-600"></i>
-                    <span>{service.serviceName}</span>
+                  <li
+                    key={index}
+                    className="flex justify-between items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition group"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 flex items-center justify-center bg-green-100 text-green-600 rounded-full transition group-hover:bg-green-600 group-hover:text-white">
+                        <i className="fa-solid fa-check"></i>
+                      </div>
+                      <span className="text-gray-800 font-medium">
+                        {service.serviceName}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-4 text-sm text-gray-700">
+                      <div>
+                        <span className="font-semibold">Price: </span>
+                        {service.price} $
+                      </div>
+                      <div className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-semibold">
+                        {service.quantity} pcs
+                      </div>
+                    </div>
                   </li>
                 ))}
               </ul>

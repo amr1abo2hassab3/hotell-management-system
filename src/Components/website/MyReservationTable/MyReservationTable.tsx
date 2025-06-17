@@ -1,12 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../../Context/AuthContext/AuthContext";
 import LoaderDashboard from "../../dashboard/LoaderDashboard/LoaderDashboard";
 import dayjs from "dayjs";
 import { MyBooking } from "../../../interfaces/bookingDashbard";
+import BookingDetailsDashboard from "../../dashboard/BookingDetailsDashboard/BookingDetailsDashboard";
+import { baseUrl, booking, detailsBooking } from "../../../Api/Api";
 
 const MyReservationTable = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [bookingNumber, setBookingNumber] = useState<number>(0 as number);
   const { userData } = useContext(AuthContext);
 
   const handleGetAllMyBookings = async () => {
@@ -17,15 +21,42 @@ const MyReservationTable = () => {
       return res.data;
     }
   };
-
   const { data, isLoading } = useQuery({
     queryKey: ["handleGetAllMyBookings"],
     queryFn: handleGetAllMyBookings,
     enabled: !!userData?.id,
   });
 
+  // this function get booking details
+  const handleGetBookingDetails = (BookingId: number) => {
+    return axios
+      .get(`${baseUrl}${booking}${BookingId}${detailsBooking}`)
+      .then((res) => res.data);
+  };
+
+  const {
+    data: dataDetails,
+    isLoading: isLoadingDetails,
+    refetch: refetchBookingDetails,
+  } = useQuery({
+    queryKey: ["getBookingDetails", bookingNumber],
+    queryFn: () => handleGetBookingDetails(bookingNumber),
+    enabled: !!bookingNumber,
+  });
+
+  const onClose = () => {
+    setIsOpen(false);
+  };
+
   return (
     <div className="w-full flex flex-col gap-4">
+      <BookingDetailsDashboard
+        roomId={bookingNumber}
+        onClose={onClose}
+        isOpen={isOpen}
+        bookingData={dataDetails}
+        isLoadingDetails={isLoadingDetails}
+      />
       <div className="flex justify-between items-center flex-wrap gap-3 px-3">
         <h3 className="font-medium text-[18px] text-[#202430]">My bookings</h3>
       </div>
@@ -55,6 +86,9 @@ const MyReservationTable = () => {
                 </th>
                 <th className="p-4 border border-slate-200 bg-slate-50">
                   Condition
+                </th>
+                <th className="p-4 border border-slate-200 bg-slate-50">
+                  Actions
                 </th>
               </tr>
             </thead>
@@ -111,6 +145,20 @@ const MyReservationTable = () => {
                     >
                       {booking.bookingCondition}
                     </p>
+                  </td>
+                  <td className="p-4 border-x border-slate-200">
+                    <div className="flex flex-col items-center gap-2 min-w-[120px]">
+                      <button
+                        onClick={() => {
+                          setBookingNumber(booking.bookingId);
+                          setIsOpen(true);
+                          refetchBookingDetails();
+                        }}
+                        className="bg-blue-500 text-white w-full p-2 rounded-md flex items-center justify-center gap-2 font-bold hover:opacity-90"
+                      >
+                        <i className="fas fa-eye"></i> Show details
+                      </button>
+                    </div>{" "}
                   </td>
                 </tr>
               ))}
@@ -176,6 +224,18 @@ const MyReservationTable = () => {
                   >
                     {booking.bookingCondition}
                   </p>
+                  <div className="flex gap-2 mt-4">
+                    <button
+                      onClick={() => {
+                        setBookingNumber(booking.bookingId);
+                        setIsOpen(true);
+                        refetchBookingDetails();
+                      }}
+                      className="bg-blue-500 text-white w-full p-2 rounded-md flex items-center justify-center gap-2 font-bold hover:opacity-90"
+                    >
+                      <i className="fas fa-eye"></i> Show details
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

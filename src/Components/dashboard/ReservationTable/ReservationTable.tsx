@@ -173,7 +173,7 @@ const ReservationTable = () => {
                       {booking.customerName}
                     </td>
                     <td className="p-4 border-x border-slate-200">
-                      {booking.roomType}
+                      {booking?.roomType?.name}
                     </td>
                     <td className="p-4 border-x border-slate-200">
                       {dayjs(booking.arrivalDate).format("DD/MM/YYYY")}{" "}
@@ -266,7 +266,7 @@ const ReservationTable = () => {
                     </p>
                     <p className="text-sm text-slate-500 mb-1">
                       <i className="fas fa-bed mr-2 text-slate-500"></i>
-                      {booking.roomType}
+                      {booking?.roomType?.name}
                     </p>
                     <p className="text-sm text-slate-500 mb-1">
                       <i className="fas fa-calendar-alt mr-2 text-slate-500"></i>

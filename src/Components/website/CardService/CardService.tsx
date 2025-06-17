@@ -4,9 +4,15 @@ import { ServiceType } from "../../../interfaces/srvicesTypes";
 
 interface CardServiceProps {
   service: ServiceType;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setServiceId: React.Dispatch<React.SetStateAction<number | null>>;
 }
 
-const CardService = ({ service }: CardServiceProps) => {
+const CardService = ({
+  service,
+  setIsOpen,
+  setServiceId,
+}: CardServiceProps) => {
   return (
     <div className="relative flex flex-col gap-4 p-4 rounded overflow-hidden min-h-[358px] justify-between w-full bg-cover bg-center">
       <div
@@ -33,7 +39,13 @@ const CardService = ({ service }: CardServiceProps) => {
         <p className="text-[14px]">{service.serviceDescription}</p>
       </div>
 
-      <button className="relative z-10 w-[264px] h-[32px] bg-[#C4A484] text-white text-[14px] font-bold rounded">
+      <button
+        onClick={() => {
+          setIsOpen(true);
+          setServiceId(service.serviceId);
+        }}
+        className="relative z-10 w-[264px] h-[32px] bg-[#C4A484] text-white text-[14px] font-bold rounded"
+      >
         Add with reservation
       </button>
     </div>

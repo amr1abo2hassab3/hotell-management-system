@@ -212,7 +212,15 @@ const UsersTable = () => {
                       </p>
                     </td>
                     <td className="p-4 py-5 border-x border-slate-200">
-                      <p className="text-sm text-slate-500">{user.role}</p>
+                      <p
+                        className={`text-white font-semibold capitalize px-1 py-1 rounded ${
+                          user.role.toLowerCase() === "admin"
+                            ? " bg-green-600 "
+                            : "bg-red-400"
+                        }`}
+                      >
+                        {user.role}
+                      </p>
                     </td>
                     <td className="p-4 py-5 border-x border-slate-200">
                       <div className="flex flex-col items-center gap-2 min-w-[120px]">
@@ -290,7 +298,15 @@ const UsersTable = () => {
                 </p>
                 <p>
                   <span className="font-bold text-slate-600">Role:</span>{" "}
-                  {user.role}
+                  <span
+                    className={`text-white font-semibold capitalize px-1 py-1 rounded ${
+                      user.role.toLowerCase() === "admin"
+                        ? " bg-green-600 "
+                        : "bg-red-400"
+                    }`}
+                  >
+                    {user.role}
+                  </span>
                 </p>
                 <div className="pt-2">
                   <div className="flex flex-col items-center gap-2 min-w-[120px]">

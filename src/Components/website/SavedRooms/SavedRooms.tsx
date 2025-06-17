@@ -60,7 +60,9 @@ const SavedRooms = () => {
               <CardRoom key={room.roomId} room={room} />
             ))
           ) : (
-            <p className="text-gray-500">You haven't saved any rooms yet.</p>
+            <p className="text-red-500 font-bold text-lg ">
+              You haven't saved any rooms yet.
+            </p>
           )}
         </div>
       )}
